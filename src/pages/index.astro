@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const products = [
+  { name: "Caderno espiral", price: "R$ 22,00", note: "96 folhas" },
+  { name: "Mochila simples", price: "R$ 89,00", note: "Uso diario" },
+  { name: "Garrafa termica", price: "R$ 35,00", note: "500 ml" },
+  { name: "Fone com fio", price: "R$ 48,00", note: "Entrada P2" },
+  { name: "MUITO CARO KKKKKK", price: "R$ 99.999,00", note: "MUITO CARO SLC KKKKKK" },
+];
+
+const mobileProducts = products.slice(0, 3);
+---
+
+<BaseLayout
+  title="Atividade A1"
+  description="Comparacao entre desktop, tablet e mobile"
+>
+  <main class="page">
+    <section class="hero">
+      <h1>Design adaptativo: modelagem multitela</h1>
+      <a class="report-link" href="/relatorio">Ler observacoes do projeto</a>
+    </section>
+
+    <section class="layouts" aria-labelledby="layouts-title">
+      <h2 id="layouts-title">Comparacao entre as tres telas</h2>
+
+      <div class="device-grid">
+        <article class="device device-desktop">
+          <div class="device-heading">
+            <h3>Desktop</h3>
+            <span>1280 x 800 px</span>
+          </div>
+
+          <div class="store">
+            <div class="store-topbar">
+              <div class="brand"><img width="100" height="50" src="https://strixeducacao.com.br/wp-content/uploads/2025/05/UNP-LOGO-1-scaled.png" alt=""></div>
+              <input class="search" type="search" placeholder="Buscar produtos" />
+              <div class="cart">Carrinho</div>
+            </div>
+
+            <nav class="menu" aria-label="Menu desktop">
+              <span>Cadernos</span>
+              <span>Mochilas</span>
+              <span>Acessorios</span>
+              <span>Ofertas</span>
+              <span>Contato</span>
+            </nav>
+
+            <section class="banner">
+              <p class="banner-tag">Exemplo aqui</p>
+              <h4>No desktop, a navegacao inteira aparece de uma vez.</h4>
+              <p>Busca, menu completo e quatro produtos ficam visiveis sem apertar o layout.</p>
+            </section>
+
+            <section class="products desktop-products">
+              {products.map((product) => (
+                <a class="product" href="#" aria-label={`Abrir ${product.name}`}>
+				  <img src="https://placehold.co/128/d5dde5/1f4b99?text=Produto" alt="">
+                  <span class="product-note">{product.note}</span>
+                  <h5>{product.name}</h5>
+                  <p>{product.price}</p>
+                </a>
+              ))}
+            </section>
+          </div>
+        </article>
+
+        <article class="device device-tablet">
+          <div class="device-heading">
+            <h3>Tablet</h3>
+            <span>768 x 1024 px</span>
+          </div>
+
+          <div class="store">
+            <div class="store-topbar">
+              <div class="brand"><img width="100" height="50" src="https://strixeducacao.com.br/wp-content/uploads/2025/05/UNP-LOGO-1-scaled.png" alt=""></div>
+              <input class="search" type="search" placeholder="Buscar produtos" />
+              <div class="cart">Carrinho</div>
+            </div>
+
+            <nav class="menu" aria-label="Menu tablet">
+              <span>Cadernos</span>
+              <span>Mochilas</span>
+              <span>Acessorios</span>
+              <span>Ofertas</span>
+            </nav>
+
+            <section class="banner">
+              <p class="banner-tag">Exemplo aqui</p>
+              <h4>No tablet, a estrutura continua igual, mas com menos folga lateral.</h4>
+              <p>A grade cai para duas colunas e o menu encolhe para manter conforto visual.</p>
+            </section>
+
+            <section class="products tablet-products">
+              {products.map((product) => (
+                <a class="product" href="#" aria-label={`Abrir ${product.name}`}>
+                  <span class="product-note">{product.note}</span>
+                  <h5>{product.name}</h5>
+                  <p>{product.price}</p>
+                </a>
+              ))}
+            </section>
+          </div>
+        </article>
+
+        <article class="device device-mobile">
+          <div class="device-heading">
+            <h3>Mobile</h3>
+            <span>360 x 640 px</span>
+          </div>
+
+          <div class="store">
+            <div class="store-topbar mobile-topbar">
+              <div class="brand"><img width="100" height="50" src="https://strixeducacao.com.br/wp-content/uploads/2025/05/UNP-LOGO-1-scaled.png" alt=""></div>
+              <div class="mobile-icons">
+                <span>&#9776;</span>
+                <span>&#128722;</span>
+              </div>
+            </div>
+
+            <input class="search mobile-search" type="search" placeholder="Buscar produtos" />
+
+            <section class="banner">
+              <p class="banner-tag">Exemplo aqui</p>
+              <h4>No mobile, o topo fica mais direto para caber bem na primeira dobra.</h4>
+              <p>A busca desce de linha e os produtos aparecem em coluna unica para leitura rapida.</p>
+            </section>
+
+            <section class="products mobile-products">
+              {mobileProducts.map((product) => (
+                <a class="product" href="#" aria-label={`Abrir ${product.name}`}>
+                  <span class="product-note">{product.note}</span>
+                  <h5>{product.name}</h5>
+                  <p>{product.price}</p>
+                </a>
+              ))}
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
